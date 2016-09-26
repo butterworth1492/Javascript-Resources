@@ -1,0 +1,18 @@
+In the past, the problem has been an inability of ZAP, Burp, or any known utility to scan some sites that employ exotic authentication mechanisms such as hardware tokens or NTLM-auth.  This script was conceived as a stop-gap to get the job done when all else has failed.
+
+Once manually authenticated and accessing a resource on a website in Firefox, open Scratchpad (<shift>-F4) and either paste the contents of firefox-dirb.js or use Scratchpad's 'Open File' utility. Modify the DIRS and BASEURL variables to fit the scan you're trying to run and then click 'Run'.  More often than not, hitting the 'Run' button once will not work the first time and so you should try clicking it again.  The script will blank the currently loaded page and build the content as it discovers URLs that don't return 404.
+
+It's a kludge, but it's effective.
+
+Some notes:
+  - We still have the issue of the Same-Origin Policy.  I've been using the Cors Everywhere
+    Firefox plugin to bypass the issue. You will need it or something similar.
+  - Because of complications regarding the Same-Origin Policy, it was decided to just embed
+    the wordlist directly into the script instead of sourcing it as an external resource.
+    The default wordlist provided was taken from /usr/share/wordlists/dirb/common.txt from
+    the Kali 1.1 linux distribution.  Feel free to substitute your own. 
+  - To monitor your progress, it is recommended that you have Firefox Inspector or Firebug
+    open to see how many directories have been attempted or whether the scan is running at
+    all.
+  - There is currently no way to stop the script other than closing the tab in which it is 
+    running.  There is probably a more elegant way but I really haven't looked for it yet.  
